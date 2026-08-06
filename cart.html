@@ -75,7 +75,7 @@
       <div class="cart-list">
         ${entries.map(e => `
           <div class="cart-item">
-            <a class="thumb" href="product.html?id=${e.p.id}">${EIS.art(e.p)}</a>
+            <a class="thumb" href="product.html?id=${e.p.id}">${EIS.media(e.p)}</a>
             <div>
               <h3><a href="product.html?id=${e.p.id}">${e.p.name}</a></h3>
               <p class="meta">${e.p.brand}${e.p.len ? ` · Länge ${String(e.p.len).replace(".", ",")} cm · Umfang ${String(e.p.girth).replace(".", ",")} cm` : ""}</p>

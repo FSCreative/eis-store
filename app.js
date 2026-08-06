@@ -173,6 +173,16 @@ const EIS = (() => {
     gate.querySelector("#age-no").onclick = () => { location.href = "https://www.google.com"; };
   }
 
+  /* ---------- Produktmedien: echtes Foto (Symbolfoto) oder Illustration ---------- */
+  const hasPhoto = p => typeof EIS_IMAGES !== "undefined" && !!EIS_IMAGES[p.id];
+  function media(p, big) {
+    if (hasPhoto(p)) {
+      return `<img src="${EIS_IMAGES[p.id]}" alt="${p.name} (Symbolfoto)" loading="lazy"
+        style="width:100%;height:100%;object-fit:cover;display:block;${big ? "aspect-ratio:1/1;" : ""}">`;
+    }
+    return art(p, big);
+  }
+
   /* ---------- Produktkarte ---------- */
   function cardHTML(p) {
     const dims = p.len
@@ -183,7 +193,7 @@ const EIS = (() => {
     return `
     <a class="card reveal" href="product.html?id=${p.id}">
       ${badge}
-      <div class="card-img">${art(p)}</div>
+      <div class="card-img">${media(p)}</div>
       <div class="card-body">
         <span class="brand">${p.brand}</span>
         <h3>${p.name}</h3>
@@ -207,5 +217,5 @@ const EIS = (() => {
 
   document.addEventListener("DOMContentLoaded", () => { ageGate(); renderBadge(); initReveal(); });
 
-  return { byId, fmt, isNew, stars, art, cardHTML, getCart, addToCart, setQty, clearCart, cartCount, toast, initReveal };
+  return { byId, fmt, isNew, stars, art, media, hasPhoto, cardHTML, getCart, addToCart, setQty, clearCart, cartCount, toast, initReveal };
 })();

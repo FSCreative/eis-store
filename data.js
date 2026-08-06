@@ -115,3 +115,23 @@ const EIS_PRODUCTS = [
   { id: "pjur-med-clean",       name: "pjur med CLEAN Spray",                brand: "pjur",       cat: "wellness",   price: 12.95,  oldPrice: null,   rating: 4.7, reviews: 1876, added: "2026-02-05", len: null, girth: null, material: "Alkoholfrei",         pop: 84, art: ["#e2f7ee","#2f8d66","bottle"],  desc: "Sanftes Toy-Reinigungsspray ohne Alkohol und Parfüm — dermatologisch getestet." },
   { id: "satisfyer-gel",        name: "Satisfyer Gentle Gleitgel 150 ml",    brand: "Satisfyer",  cat: "wellness",   price: 11.95,  oldPrice: null,   rating: 4.4, reviews: 987,  added: "2026-07-28", len: null, girth: null, material: "Wasserbasis",         pop: 72, art: ["#ffd6e8","#c8558a","bottle"],  desc: "Veganes Wasserbasis-Gel ohne Duft- und Farbstoffe — passend zu allen Toys der Marke." }
 ];
+
+/* ---------- Produktfotos (frei lizenziert: Unsplash-/Pexels-Lizenz) ----------
+   Symbolfotos ähnlicher, generischer Toys — keine Herstellerfotos.            */
+const EIS_IMAGES = {
+  "we-vibe-sync2":       "https://images.unsplash.com/photo-1654512206148-8700d46e688f?q=80&w=800&auto=format&fit=crop",
+  "we-vibe-chorus":      "https://images.unsplash.com/photo-1651027446572-7c27d7d50537?q=80&w=800&auto=format&fit=crop",
+  "womanizer-premium2":  "https://images.unsplash.com/photo-1593527538338-86235520a070?q=80&w=800&auto=format&fit=crop",
+  "easytoys-bullet":     "https://images.pexels.com/photos/6766620/pexels-photo-6766620.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "satisfyer-doubleflex":"https://images.pexels.com/photos/6764482/pexels-photo-6764482.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "we-vibe-tango-x":     "https://images.pexels.com/photos/6768988/pexels-photo-6768988.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "satisfyer-purple":    "https://images.pexels.com/photos/6763691/pexels-photo-6763691.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "dj-anal-beads":       "https://images.pexels.com/photos/6754656/pexels-photo-6754656.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "satisfyer-plugs-set": "https://images.pexels.com/photos/6754652/pexels-photo-6754652.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "icicles-no5":         "https://images.pexels.com/photos/5187501/pexels-photo-5187501.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "lelo-gigi2":          "https://images.pexels.com/photos/5187487/pexels-photo-5187487.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "lelo-sona2-cruise":   "https://images.pexels.com/photos/6766606/pexels-photo-6766606.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "satisfyer-curvy2":    "https://images.pexels.com/photos/5187304/pexels-photo-5187304.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "arcwave-ion":         "https://images.pexels.com/photos/6768991/pexels-photo-6768991.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "svakom-coco":         "https://images.pexels.com/photos/6768998/pexels-photo-6768998.jpeg?auto=compress&cs=tinysrgb&w=800"
+};

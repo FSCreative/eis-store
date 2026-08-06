@@ -78,7 +78,7 @@
 
   root.innerHTML = `
   <div class="pdp">
-    <div class="pdp-img">${EIS.art(p, true)}</div>
+    <div class="pdp-img">${EIS.media(p, true)}${EIS.hasPhoto(p) ? `<p style="font-size:11.5px;color:var(--muted);text-align:center;padding:8px 0;background:var(--surface);">Symbolfoto — zeigt ein ähnliches Modell</p>` : ""}</div>
     <div class="pdp-info">
       <div style="display:flex; gap:10px; align-items:center;">
         <span class="brand">${p.brand}</span>${badge}
