@@ -9,14 +9,14 @@
   const state = {
     cats: new Set(params.get("cat") ? [params.get("cat")] : []),
     brands: new Set(),
-    price: [0, 100],
-    len: [5, 30],
-    girth: [4, 18],
+    price: [0, 250],
+    len: [5, 40],
+    girth: [4, 22],
     sale: params.get("sale") === "1",
     onlyNew: false,
     sort: params.get("sort") || "pop"
   };
-  const DEF = { price: [0, 100], len: [5, 30], girth: [4, 18] };
+  const DEF = { price: [0, 250], len: [5, 40], girth: [4, 22] };
 
   /* ---------- Titel je nach Einstieg ---------- */
   const titleEl = document.getElementById("shop-title");

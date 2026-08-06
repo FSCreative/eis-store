@@ -1,7 +1,8 @@
 # EIS.STORE — Demo-Shop
 
 Ein an eis.at angelehnter Demo-Onlineshop in frischem, Apple-Store-inspiriertem Design.
-**Alle Produkte, Marken und Preise sind fiktiv.** Nur für Personen ab 18 Jahren.
+**80 echte Markenprodukte (Satisfyer, Womanizer, We-Vibe, LELO, Fun Factory, Fleshlight, Tenga, pjur u.v.m.) von Mini bis XXL.**
+Beschreibungen eigenständig verfasst; Preise, Bewertungen und Verfügbarkeit fiktiv; Abbildungen sind stilisierte Eigen-Illustrationen (keine Herstellerfotos). Markennamen gehören ihren Inhabern. Nur für Personen ab 18 Jahren.
 
 ## Features
 
