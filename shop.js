@@ -10,13 +10,13 @@
     cats: new Set(params.get("cat") ? [params.get("cat")] : []),
     brands: new Set(),
     price: [0, 250],
-    len: [5, 40],
-    girth: [4, 22],
+    len: [5, 45],
+    girth: [4, 26],
     sale: params.get("sale") === "1",
     onlyNew: false,
     sort: params.get("sort") || "pop"
   };
-  const DEF = { price: [0, 250], len: [5, 40], girth: [4, 22] };
+  const DEF = { price: [0, 250], len: [5, 45], girth: [4, 26] };
 
   /* ---------- Titel je nach Einstieg ---------- */
   const titleEl = document.getElementById("shop-title");

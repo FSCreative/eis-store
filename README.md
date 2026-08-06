@@ -2,7 +2,7 @@
 
 Ein an eis.at angelehnter Demo-Onlineshop in frischem, Apple-Store-inspiriertem Design.
 **80 echte Markenprodukte (Satisfyer, Womanizer, We-Vibe, LELO, Fun Factory, Fleshlight, Tenga, pjur u.v.m.) von Mini bis XXL.**
-Beschreibungen eigenständig verfasst; Preise, Bewertungen und Verfügbarkeit fiktiv; Abbildungen sind stilisierte Eigen-Illustrationen (keine Herstellerfotos). Markennamen gehören ihren Inhabern. Nur für Personen ab 18 Jahren.
+Beschreibungen eigenständig verfasst; Preise, Bewertungen und Verfügbarkeit fiktiv; Produktabbildungen sind stilisierte Eigen-Illustrationen (keine Herstellerfotos). Ambiente-Fotos von [Unsplash](https://unsplash.com) (Unsplash-Lizenz). Markennamen gehören ihren Inhabern. Nur für Personen ab 18 Jahren.
 
 ## Features
 
