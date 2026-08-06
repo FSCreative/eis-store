@@ -111,6 +111,13 @@ img, svg { display: block; }
   box-shadow: var(--shadow-hover); display: block;
 }
 
+.shop-banner { margin-bottom: 30px; }
+.shop-banner img {
+  width: 100%; height: clamp(160px, 24vw, 280px);
+  object-fit: cover; border-radius: 22px; display: block;
+  box-shadow: var(--shadow);
+}
+
 /* ---------- Section headings ---------- */
 .section { padding: 64px 0; }
 .section-head {
