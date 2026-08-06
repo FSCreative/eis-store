@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EIS.STORE — Lust, neu gedacht.</title>
+<meta name="description" content="Demo-Shop: Toys, Wellness & mehr in frischem Design.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">EIS<em>.</em>STORE</a>
+    <div class="nav-links">
+      <a href="shop.html">Alle Toys</a>
+      <a href="shop.html?cat=vibratoren">Vibratoren</a>
+      <a href="shop.html?cat=dildos">Dildos</a>
+      <a href="shop.html?cat=paare">Für Paare</a>
+      <a href="shop.html?cat=maenner">Für Männer</a>
+      <a href="shop.html?sort=new">Neuheiten</a>
+      <a href="shop.html?sale=1">Sale</a>
+    </div>
+    <a class="nav-cart" href="cart.html" aria-label="Warenkorb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.2 13a1 1 0 0 1-1 1.1H5.8a1 1 0 0 1-1-1.1L6 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+      <span class="cart-badge"></span>
+    </a>
+  </div>
+</nav>
+
+<header class="hero">
+  <p class="eyebrow">Neu im Store</p>
+  <h1>Lust, neu gedacht.</h1>
+  <p class="sub">Sorgfältig ausgewählte Toys. Diskret geliefert.<br>In einem Store, der sich so gut anfühlt wie das, was er verkauft.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="shop.html">Jetzt entdecken</a>
+    <a class="btn btn-ghost" href="shop.html?sort=new">Neuheiten ansehen ›</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Kategorien.</h2>
+      <a class="more" href="shop.html">Alle Produkte ›</a>
+    </div>
+    <div class="cat-grid" id="cat-grid"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Neuheiten.</h2>
+      <a class="more" href="shop.html?sort=new">Alle Neuheiten ›</a>
+    </div>
+    <div class="grid" id="new-grid"></div>
+  </section>
+
+  <section class="section">
+    <div class="promo reveal">
+      <h2>Sale. Bis zu −30&nbsp;%.</h2>
+      <p>Ausgewählte Lieblinge, für kurze Zeit reduziert.</p>
+      <a class="btn" href="shop.html?sale=1">Zum Sale</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Bestseller.</h2>
+      <a class="more" href="shop.html?sort=pop">Alle Bestseller ›</a>
+    </div>
+    <div class="grid" id="best-grid"></div>
+  </section>
+
+  <section class="section">
+    <div class="usp-row">
+      <div class="usp reveal"><span class="ico">📦</span><span><b>100 % diskret</b>Neutraler Versand ohne Absender-Hinweis</span></div>
+      <div class="usp reveal"><span class="ico">🚚</span><span><b>Gratis Versand</b>Ab 49 € Bestellwert, in 1–3 Werktagen</span></div>
+      <div class="usp reveal"><span class="ico">🔒</span><span><b>Sicher bezahlen</b>Kauf auf Rechnung, Karte & mehr</span></div>
+      <div class="usp reveal"><span class="ico">💬</span><span><b>Beratung</b>Anonym & kostenlos, 7 Tage die Woche</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><h5>Shop</h5><a href="shop.html">Alle Toys</a><a href="shop.html?sort=new">Neuheiten</a><a href="shop.html?sale=1">Sale</a></div>
+      <div><h5>Kategorien</h5><a href="shop.html?cat=vibratoren">Vibratoren</a><a href="shop.html?cat=dildos">Dildos</a><a href="shop.html?cat=paare">Für Paare</a><a href="shop.html?cat=wellness">Wellness</a></div>
+      <div><h5>Service</h5><a href="#">Versand & Rückgabe</a><a href="#">Diskretion</a><a href="#">Kontakt</a><a href="#">FAQ</a></div>
+      <div><h5>Rechtliches</h5><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">AGB</a></div>
+    </div>
+    <div class="legal">
+      <span>© 2026 EIS.STORE — Demo-Projekt. Alle Produkte, Marken und Preise sind fiktiv.</span>
+      <span>Nur für Personen ab 18 Jahren.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  // Kategorien-Kacheln
+  const catIcons = { vibratoren:"💫", dildos:"🌊", paare:"💞", maenner:"⚡", anal:"🍑", kugeln:"🔮", wellness:"🌿" };
+  document.getElementById("cat-grid").innerHTML = EIS_CATEGORIES.map(c => `
+    <a class="cat-tile reveal" href="shop.html?cat=${c.id}">
+      <div class="icon" style="background:var(--surface-2);font-size:26px">${catIcons[c.id]}</div>
+      <h3>${c.name}</h3><p>${c.tag}</p>
+    </a>`).join("");
+
+  // Neuheiten: die 4 zuletzt hinzugefügten
+  const newest = [...EIS_PRODUCTS].sort((a,b) => new Date(b.added) - new Date(a.added)).slice(0, 4);
+  document.getElementById("new-grid").innerHTML = newest.map(EIS.cardHTML).join("");
+
+  // Bestseller: Top 4 nach Beliebtheit
+  const best = [...EIS_PRODUCTS].sort((a,b) => b.pop - a.pop).slice(0, 4);
+  document.getElementById("best-grid").innerHTML = best.map(EIS.cardHTML).join("");
+
+  EIS.initReveal();
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produkt — EIS.STORE</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">EIS<em>.</em>STORE</a>
+    <div class="nav-links">
+      <a href="shop.html">Alle Toys</a>
+      <a href="shop.html?cat=vibratoren">Vibratoren</a>
+      <a href="shop.html?cat=dildos">Dildos</a>
+      <a href="shop.html?cat=paare">Für Paare</a>
+      <a href="shop.html?cat=maenner">Für Männer</a>
+      <a href="shop.html?sort=new">Neuheiten</a>
+      <a href="shop.html?sale=1">Sale</a>
+    </div>
+    <a class="nav-cart" href="cart.html" aria-label="Warenkorb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.2 13a1 1 0 0 1-1 1.1H5.8a1 1 0 0 1-1-1.1L6 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+      <span class="cart-badge"></span>
+    </a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div id="pdp-root"></div>
+
+  <section class="section" id="related-section" style="display:none;">
+    <div class="section-head"><h2>Das könnte dir auch gefallen.</h2></div>
+    <div class="grid" id="related-grid"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="legal">
+      <span>© 2026 EIS.STORE — Demo-Projekt. Alle Produkte, Marken und Preise sind fiktiv.</span>
+      <span>Nur für Personen ab 18 Jahren.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+(() => {
+  const id = new URLSearchParams(location.search).get("id");
+  const p = EIS.byId(id);
+  const root = document.getElementById("pdp-root");
+
+  if (!p) {
+    root.innerHTML = `<div class="empty" style="padding:110px 0;">Produkt nicht gefunden.<br><br><a class="btn btn-primary" href="shop.html">Zurück zum Shop</a></div>`;
+    return;
+  }
+
+  document.title = p.name + " — EIS.STORE";
+  const cat = EIS_CATEGORIES.find(c => c.id === p.cat);
+  const de = v => String(v).replace(".", ",");
+
+  const specs = [
+    ["Kategorie", cat ? cat.name : p.cat],
+    ["Marke", p.brand],
+    p.len   != null ? ["Länge", de(p.len) + " cm"] : null,
+    p.girth != null ? ["Umfang", de(p.girth) + " cm"] : null,
+    p.girth != null ? ["Ø Durchmesser", de(Math.round(p.girth / Math.PI * 10) / 10) + " cm"] : null,
+    ["Material", p.material],
+    ["Artikel-Nr.", "EIS-" + p.id.toUpperCase().slice(0, 12)]
+  ].filter(Boolean);
+
+  const badge = EIS.isNew(p) ? `<span class="badge new" style="position:static;">NEU</span>`
+    : p.oldPrice ? `<span class="badge sale" style="position:static;">SALE</span>` : "";
+
+  root.innerHTML = `
+  <div class="pdp">
+    <div class="pdp-img">${EIS.art(p, true)}</div>
+    <div class="pdp-info">
+      <div style="display:flex; gap:10px; align-items:center;">
+        <span class="brand">${p.brand}</span>${badge}
+      </div>
+      <h1>${p.name}</h1>
+      <div class="rating"><span class="stars">${EIS.stars(p.rating)}</span> ${p.rating.toFixed(1)} · ${p.reviews} Bewertungen</div>
+      <div class="pdp-price">
+        <span class="price">${EIS.fmt(p.price)}</span>
+        ${p.oldPrice ? `<span class="old">${EIS.fmt(p.oldPrice)}</span>
+          <span class="save">−${Math.round((1 - p.price / p.oldPrice) * 100)} %</span>` : ""}
+      </div>
+      <p class="pdp-desc">${p.desc}</p>
+      <div class="spec-table">
+        ${specs.map(([k, v]) => `<div class="spec-row"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("")}
+      </div>
+      <div class="pdp-actions">
+        <div class="qty">
+          <button id="q-minus" aria-label="Weniger">−</button>
+          <span id="q-val">1</span>
+          <button id="q-plus" aria-label="Mehr">+</button>
+        </div>
+        <button class="btn btn-primary" id="add" style="flex:1; min-width:220px; padding:14px;">In den Warenkorb</button>
+      </div>
+      <div class="pdp-usps">
+        <span>Diskreter Versand in neutraler Verpackung</span>
+        <span>Gratis Versand ab 49 €</span>
+        <span>30 Tage Rückgaberecht (original verschlossen)</span>
+      </div>
+    </div>
+  </div>`;
+
+  let qty = 1;
+  const qv = document.getElementById("q-val");
+  document.getElementById("q-minus").onclick = () => { qty = Math.max(1, qty - 1); qv.textContent = qty; };
+  document.getElementById("q-plus").onclick  = () => { qty = Math.min(10, qty + 1); qv.textContent = qty; };
+  document.getElementById("add").onclick = () => EIS.addToCart(p.id, qty);
+
+  // Ähnliche Produkte: gleiche Kategorie, sonst Bestseller
+  let rel = EIS_PRODUCTS.filter(x => x.cat === p.cat && x.id !== p.id);
+  if (rel.length < 4) rel = rel.concat(
+    EIS_PRODUCTS.filter(x => x.id !== p.id && !rel.includes(x)).sort((a, b) => b.pop - a.pop));
+  document.getElementById("related-grid").innerHTML = rel.slice(0, 4).map(EIS.cardHTML).join("");
+  document.getElementById("related-section").style.display = "";
+  EIS.initReveal();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warenkorb — EIS.STORE</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">EIS<em>.</em>STORE</a>
+    <div class="nav-links">
+      <a href="shop.html">Alle Toys</a>
+      <a href="shop.html?cat=vibratoren">Vibratoren</a>
+      <a href="shop.html?cat=dildos">Dildos</a>
+      <a href="shop.html?cat=paare">Für Paare</a>
+      <a href="shop.html?cat=maenner">Für Männer</a>
+      <a href="shop.html?sort=new">Neuheiten</a>
+      <a href="shop.html?sale=1">Sale</a>
+    </div>
+    <a class="nav-cart" href="cart.html" aria-label="Warenkorb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.2 13a1 1 0 0 1-1 1.1H5.8a1 1 0 0 1-1-1.1L6 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+      <span class="cart-badge"></span>
+    </a>
+  </div>
+</nav>
+
+<main class="cart-page">
+  <h1>Warenkorb.</h1>
+  <div id="cart-root"></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="legal">
+      <span>© 2026 EIS.STORE — Demo-Projekt. Alle Produkte, Marken und Preise sind fiktiv.</span>
+      <span>Nur für Personen ab 18 Jahren.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+(() => {
+  const FREE_SHIPPING = 49;
+  const SHIPPING = 4.95;
+  const root = document.getElementById("cart-root");
+
+  function render() {
+    const cart = EIS.getCart();
+    const entries = Object.entries(cart)
+      .map(([id, qty]) => ({ p: EIS.byId(id), qty }))
+      .filter(e => e.p);
+
+    if (!entries.length) {
+      root.innerHTML = `
+        <div class="cart-empty">
+          <div class="big">🛍️</div>
+          <p style="font-size:18px; color:var(--ink); font-weight:600;">Dein Warenkorb ist leer.</p>
+          <p style="margin-top:6px;">Zeit, das zu ändern.</p>
+          <a class="btn btn-primary" style="margin-top:24px;" href="shop.html">Jetzt shoppen</a>
+        </div>`;
+      return;
+    }
+
+    const subtotal = entries.reduce((s, e) => s + e.p.price * e.qty, 0);
+    const shipping = subtotal >= FREE_SHIPPING ? 0 : SHIPPING;
+    const missing = FREE_SHIPPING - subtotal;
+
+    root.innerHTML = `
+      <div class="cart-list">
+        ${entries.map(e => `
+          <div class="cart-item">
+            <a class="thumb" href="product.html?id=${e.p.id}">${EIS.art(e.p)}</a>
+            <div>
+              <h3><a href="product.html?id=${e.p.id}">${e.p.name}</a></h3>
+              <p class="meta">${e.p.brand}${e.p.len ? ` · Länge ${String(e.p.len).replace(".", ",")} cm · Umfang ${String(e.p.girth).replace(".", ",")} cm` : ""}</p>
+              <p class="meta">${EIS.fmt(e.p.price)} / Stück</p>
+            </div>
+            <div class="right">
+              <span class="price">${EIS.fmt(e.p.price * e.qty)}</span>
+              <div class="qty">
+                <button data-dec="${e.p.id}" aria-label="Weniger">−</button>
+                <span>${e.qty}</span>
+                <button data-inc="${e.p.id}" aria-label="Mehr">+</button>
+              </div>
+              <button class="remove" data-rm="${e.p.id}">Entfernen</button>
+            </div>
+          </div>`).join("")}
+      </div>
+
+      <div class="cart-summary">
+        <div class="row"><span>Zwischensumme</span><span>${EIS.fmt(subtotal)}</span></div>
+        <div class="row"><span>Versand</span><span>${shipping === 0 ? "Gratis" : EIS.fmt(shipping)}</span></div>
+        ${shipping > 0 ? `<div class="row" style="color:var(--green); font-size:13px;"><span>Noch ${EIS.fmt(missing)} bis zum Gratis-Versand</span><span></span></div>` : ""}
+        <div class="row total"><span>Gesamt</span><span>${EIS.fmt(subtotal + shipping)}</span></div>
+      </div>
+
+      <div class="cart-cta">
+        <button class="btn btn-primary" id="checkout">Zur Kasse</button>
+        <a class="btn btn-ghost" href="shop.html">Weiter einkaufen</a>
+      </div>
+      <p style="text-align:center; font-size:12.5px; color:var(--muted); margin-top:18px;">
+        Diskreter Versand · Neutrale Verpackung · Abbuchung als „ES Handel GmbH“
+      </p>`;
+
+    root.querySelectorAll("[data-inc]").forEach(b => b.onclick = () => { EIS.setQty(b.dataset.inc, (EIS.getCart()[b.dataset.inc] || 0) + 1); render(); });
+    root.querySelectorAll("[data-dec]").forEach(b => b.onclick = () => { EIS.setQty(b.dataset.dec, (EIS.getCart()[b.dataset.dec] || 0) - 1); render(); });
+    root.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { EIS.setQty(b.dataset.rm, 0); render(); });
+    document.getElementById("checkout").onclick = () => {
+      EIS.clearCart();
+      render();
+      EIS.toast("Demo-Bestellung abgeschlossen — danke! 💗");
+    };
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alle Toys — EIS.STORE</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">EIS<em>.</em>STORE</a>
+    <div class="nav-links">
+      <a href="shop.html" class="active">Alle Toys</a>
+      <a href="shop.html?cat=vibratoren">Vibratoren</a>
+      <a href="shop.html?cat=dildos">Dildos</a>
+      <a href="shop.html?cat=paare">Für Paare</a>
+      <a href="shop.html?cat=maenner">Für Männer</a>
+      <a href="shop.html?sort=new">Neuheiten</a>
+      <a href="shop.html?sale=1">Sale</a>
+    </div>
+    <a class="nav-cart" href="cart.html" aria-label="Warenkorb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.2 13a1 1 0 0 1-1 1.1H5.8a1 1 0 0 1-1-1.1L6 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+      <span class="cart-badge"></span>
+    </a>
+  </div>
+</nav>
+
+<main class="wrap" style="padding-top:44px; padding-bottom:70px;">
+
+  <div class="section-head" style="margin-bottom:8px;">
+    <h2 id="shop-title" style="font-size:clamp(32px,4.5vw,46px);">Alle Toys.</h2>
+  </div>
+  <p id="shop-sub" style="color:var(--muted); font-size:16px; margin-bottom:32px;">Finde genau das, was zu dir passt — nach Größe, Preis und Vorlieben gefiltert.</p>
+
+  <div class="shop-layout">
+
+    <!-- ================= FILTER ================= -->
+    <aside class="filters" id="filters">
+
+      <div class="fgroup" id="fg-cat">
+        <h4>Kategorie <span class="chev">▼</span></h4>
+        <div class="fbody" id="f-cats"></div>
+      </div>
+
+      <div class="fgroup" id="fg-brand">
+        <h4>Marke <span class="chev">▼</span></h4>
+        <div class="fbody" id="f-brands"></div>
+      </div>
+
+      <div class="fgroup">
+        <h4>Preis <span class="chev">▼</span></h4>
+        <div class="fbody">
+          <div class="range-vals"><span><b id="price-min-v">€ 0</b></span><span><b id="price-max-v">€ 100</b></span></div>
+          <div class="dual-range">
+            <div class="track"></div><div class="fill" id="price-fill"></div>
+            <input type="range" id="price-min" min="0" max="100" value="0" step="5">
+            <input type="range" id="price-max" min="0" max="100" value="100" step="5">
+          </div>
+        </div>
+      </div>
+
+      <div class="fgroup">
+        <h4>Länge (cm) <span class="chev">▼</span></h4>
+        <div class="fbody">
+          <div class="range-vals"><span><b id="len-min-v">5</b> cm</span><span><b id="len-max-v">30</b> cm</span></div>
+          <div class="dual-range">
+            <div class="track"></div><div class="fill" id="len-fill"></div>
+            <input type="range" id="len-min" min="5" max="30" value="5" step="1">
+            <input type="range" id="len-max" min="5" max="30" value="30" step="1">
+          </div>
+          <p style="font-size:11.5px;color:var(--muted);">Gesamtlänge des Toys</p>
+        </div>
+      </div>
+
+      <div class="fgroup">
+        <h4>Umfang (cm) <span class="chev">▼</span></h4>
+        <div class="fbody">
+          <div class="range-vals"><span><b id="girth-min-v">4</b> cm</span><span><b id="girth-max-v">18</b> cm</span></div>
+          <div class="dual-range">
+            <div class="track"></div><div class="fill" id="girth-fill"></div>
+            <input type="range" id="girth-min" min="4" max="18" value="4" step="0.5">
+            <input type="range" id="girth-max" min="4" max="18" value="18" step="0.5">
+          </div>
+          <p style="font-size:11.5px;color:var(--muted);">Umfang an der breitesten Stelle</p>
+        </div>
+      </div>
+
+      <div class="fgroup">
+        <h4>Angebote <span class="chev">▼</span></h4>
+        <div class="fbody">
+          <label class="fcheck"><input type="checkbox" id="f-sale"> Nur Sale</label>
+          <label class="fcheck"><input type="checkbox" id="f-new"> Nur Neuheiten</label>
+        </div>
+      </div>
+
+      <button class="freset" id="f-reset">Alle Filter zurücksetzen</button>
+    </aside>
+
+    <!-- ================= GRID ================= -->
+    <section>
+      <div class="shop-topbar">
+        <span class="count" id="count"></span>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="filter-toggle" id="filter-toggle">⚙︎ Filter</button>
+          <select class="sort-select" id="sort" aria-label="Sortieren">
+            <option value="pop">Beliebtheit</option>
+            <option value="new">Neuheiten zuerst</option>
+            <option value="price-asc">Preis: aufsteigend</option>
+            <option value="price-desc">Preis: absteigend</option>
+            <option value="rating">Beste Bewertung</option>
+            <option value="discount">Höchster Rabatt</option>
+          </select>
+        </div>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="legal">
+      <span>© 2026 EIS.STORE — Demo-Projekt. Alle Produkte, Marken und Preise sind fiktiv.</span>
+      <span>Nur für Personen ab 18 Jahren.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="shop.js"></script>
+</body>
+</html>

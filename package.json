@@ -1,0 +1,15 @@
+{
+  "name": "eis-store",
+  "version": "1.0.0",
+  "description": "EIS.STORE — Demo-Shop im Apple-Store-Design (fiktive Produkte)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
