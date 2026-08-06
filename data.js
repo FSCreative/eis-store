@@ -118,20 +118,59 @@ const EIS_PRODUCTS = [
 
 /* ---------- Produktfotos (frei lizenziert: Unsplash-/Pexels-Lizenz) ----------
    Symbolfotos ähnlicher, generischer Toys — keine Herstellerfotos.            */
+const PX = id => "https://images.pexels.com/photos/" + id + "/pexels-photo-" + id + ".jpeg?auto=compress&cs=tinysrgb&w=800";
+const UN = id => "https://images.unsplash.com/photo-" + id + "?q=80&w=800&auto=format&fit=crop";
+
 const EIS_IMAGES = {
-  "we-vibe-sync2":       "https://images.unsplash.com/photo-1654512206148-8700d46e688f?q=80&w=800&auto=format&fit=crop",
-  "we-vibe-chorus":      "https://images.unsplash.com/photo-1651027446572-7c27d7d50537?q=80&w=800&auto=format&fit=crop",
-  "womanizer-premium2":  "https://images.unsplash.com/photo-1593527538338-86235520a070?q=80&w=800&auto=format&fit=crop",
-  "easytoys-bullet":     "https://images.pexels.com/photos/6766620/pexels-photo-6766620.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "satisfyer-doubleflex":"https://images.pexels.com/photos/6764482/pexels-photo-6764482.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "we-vibe-tango-x":     "https://images.pexels.com/photos/6768988/pexels-photo-6768988.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "satisfyer-purple":    "https://images.pexels.com/photos/6763691/pexels-photo-6763691.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "dj-anal-beads":       "https://images.pexels.com/photos/6754656/pexels-photo-6754656.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "satisfyer-plugs-set": "https://images.pexels.com/photos/6754652/pexels-photo-6754652.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "icicles-no5":         "https://images.pexels.com/photos/5187501/pexels-photo-5187501.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "lelo-gigi2":          "https://images.pexels.com/photos/5187487/pexels-photo-5187487.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "lelo-sona2-cruise":   "https://images.pexels.com/photos/6766606/pexels-photo-6766606.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "satisfyer-curvy2":    "https://images.pexels.com/photos/5187304/pexels-photo-5187304.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "arcwave-ion":         "https://images.pexels.com/photos/6768991/pexels-photo-6768991.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "svakom-coco":         "https://images.pexels.com/photos/6768998/pexels-photo-6768998.jpeg?auto=compress&cs=tinysrgb&w=800"
+  /* Vibratoren */
+  "satisfyer-pro2-g3": PX(6768328),   "womanizer-premium2": UN("1593527538338-86235520a070"),
+  "womanizer-starlet3": PX(6768992),  "womanizer-og": PX(6763690),
+  "satisfyer-curvy2": PX(5187304),    "lelo-sona2-cruise": PX(6766606),
+  "we-vibe-tango-x": PX(6768988),     "satisfyer-purple": PX(6763691),
+  "ff-stronic-g": PX(5187577),        "doxy-original": PX(6768993),
+  "magic-wand-original": PX(5187562), "lelo-gigi2": PX(5187487),
+  "we-vibe-rave2": PX(6768324),       "svakom-coco": PX(6768998),
+  "easytoys-bullet": PX(6766620),     "satisfyer-doubleflex": PX(6764482),
+  /* Dildos */
+  "ff-limba-flex-s": PX(6768989),     "king-cock-15": PX(5187500),
+  "king-cock-20": PX(6768982),        "realrock-18": PX(6766745),
+  "icicles-no5": PX(5187501),         "ff-magnum": PX(6763682),
+  "dj-crystal-jellies20": PX(5187373),"strap-on-me-m": PX(5187374),
+  "easytoys-harness": PX(5187355),    "realrock-dd-24": PX(5187576),
+  "king-cock-25": PX(11635317),       "realrock-xxl-31": PX(5187485),
+  "dj-bam": PX(5187306),              "dj-b10-torpedo": PX(6754660),
+  "dj-great-american": PX(5187392),   "ff-amor": PX(6763671),
+  "dj-dick-rambone": PX(6763677),     "king-cock-38": PX(5187569),
+  "dj-bunker-buster": PX(6763432),    "allblack-xxl-40": PX(5187490),
+  /* Für Paare */
+  "we-vibe-sync2": UN("1654512206148-8700d46e688f"),
+  "we-vibe-chorus": UN("1651027446572-7c27d7d50537"),
+  "satisfyer-double-joy": PX(6766739),"durex-intense-ring": PX(6473090),
+  "lelo-tor3": PX(6768987),           "lovense-lush3": PX(11944075),
+  "we-vibe-jive2": PX(6755552),       "ff-nos": PX(6763669),
+  /* Für Männer */
+  "fleshlight-stu": PX(6834358),      "fleshlight-pink-lady": PX(6763945),
+  "tenga-egg-6": PX(5187651),         "tenga-flip-zero": PX(6768986),
+  "arcwave-ion": PX(6768991),         "satisfyer-men-heat": PX(6763684),
+  "lovense-max2": PX(6768995),        "pulse-solo": PX(6766609),
+  "bathmate-hydro7": PX(6755547),     "calexotics-rings": PX(5187306),
+  "tenga-spinner02": PX(6768986),     "fleshlight-quickshot": PX(6754661),
+  /* Analtoys */
+  "easytoys-jewel-s": PX(5187362),    "ff-bootie-s": PX(6754659),
+  "ff-bootie-m": PX(6754653),         "satisfyer-plugs-set": PX(6754652),
+  "bvibe-novice": PX(6764492),        "icicles-glass-plug": PX(6754655),
+  "dj-anal-beads": PX(6754656),       "aneros-helix-syn": PX(6754880),
+  "nexus-revo-slim": PX(6763690),     "titanmen-xl-plug": PX(5187490),
+  "allblack-xl-plug": PX(5187500),    "easytoys-kette-xl": PX(6766743),
+  "bvibe-snug2": PX(6763682),         "titanmen-assmaster": PX(6754660),
+  /* Liebeskugeln */
+  "ff-smartballs": PX(5187570),       "lelo-luna-beads": PX(5187358),
+  "we-vibe-bloom": PX(6768315),       "satisfyer-balls-c03": PX(5187656),
+  "elvie-trainer": PX(6755552),
+  /* Wellness */
+  "pjur-original-100": PX(6560283),   "pjur-aqua-100": PX(7795661),
+  "easyglide-150": PX(5888075),       "pjur-backdoor-100": PX(7795845),
+  "durex-play-feel": PX(7795756),     "shunga-kerze": PX(6628491),
+  "durex-gefuehlsecht": PX(6303795),  "mysize-53": PX(5218031),
+  "pjur-med-clean": PX(7795849),      "satisfyer-gel": PX(7796735)
 };
