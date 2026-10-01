@@ -29,3 +29,7 @@ Oder einfach `index.html` direkt im Browser öffnen (kein Server nötig).
 
 Railway erkennt das Projekt automatisch über `package.json`:
 Start-Command `npm start`, Port über `process.env.PORT`.
+
+## Hinweis zur Erstellung
+
+Bei der Erstellung dieser Website wurden teilweise KI-gestützte Werkzeuge eingesetzt. Alle Inhalte wurden redaktionell geprüft.
